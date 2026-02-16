@@ -11,10 +11,14 @@ let products = [
   { id: 4, name: 'Наушники', price: 250 }
 ];
 
+
+// GET /products - получить все товары
 app.get('/products', (req, res) => {
   res.json(products);
 });
 
+
+// GET /products/:id - получить товар по ID
 app.get('/products/:id', (req, res) => {
   const id = Number(req.params.id);
   const product = products.find(p => p.id === id);
@@ -26,6 +30,8 @@ app.get('/products/:id', (req, res) => {
   res.json(product);
 });
 
+
+// POST /products - создать товар
 app.post('/products', (req, res) => {
   const { name, price } = req.body;
 
@@ -44,6 +50,8 @@ app.post('/products', (req, res) => {
   res.status(201).json(newProduct);
 });
 
+
+// PATCH /products/:id - обновить товар
 app.patch('/products/:id', (req, res) => {
   const id = Number(req.params.id);
   const product = products.find(p => p.id === id);
@@ -60,6 +68,8 @@ app.patch('/products/:id', (req, res) => {
   res.json(product);
 });
 
+
+// DELETE /products/:id - удалить товар
 app.delete('/products/:id', (req, res) => {
   const id = Number(req.params.id);
   const index = products.findIndex(p => p.id === id);
